@@ -3,6 +3,8 @@
     Home
     <p ref="para">My name is {{ name }} and my age is {{ age }}</p>
     <button @click="handleClick">Click me</button>
+    <button @click="age++">add age</button>
+    <input type="text" v-model="name" />
   </div>
 </template>
 
@@ -18,13 +20,16 @@ export default {
     // introduce ref as the references of the DOM element it hooked with
     const para = ref(null);
 
-    // the values are initally not dynamically rendered out
-    let name = "mario";
-    let age = 30;
+    // the values are not reactive elements, therefore, ref will solve this porblem and make the element have dynamic values
+    let name = ref("mario");
+    let age = ref(30);
 
     const handleClick = () => {
-      console.log(para, para.value);
-      para.value.classList.add("test");
+      name.value = "luigi";
+      age.value = 35;
+
+      // console.log(para, para.value);
+      // para.value.classList.add("test");
       // para.value.textContent = "hello";
     };
 
