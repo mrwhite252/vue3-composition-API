@@ -1,40 +1,36 @@
 <template>
   <div class="home">
     Home
-    <p ref="para">My name is {{ name }} and my age is {{ age }}</p>
-    <button @click="handleClick">Click me</button>
-    <button @click="age++">add age</button>
-    <input type="text" v-model="name" />
+    <h2>refs</h2>
+    <p>{{ ninjaOne.name }} - {{ ninjaOne.age }}</p>
+    <button @click="updateNinjaOne">Update Ninja One</button>
+
+    <h2>reactive</h2>
+    <p>{{ ninjaTwo.name }} - {{ ninjaTwo.age }}</p>
+    <button @click="updateNinjaTwo">Update Ninja Two</button>
   </div>
 </template>
 
 <script>
-import { ref } from "@vue/reactivity";
+import { reactive, ref } from "@vue/reactivity";
 export default {
   name: "Home",
 
   // the setup hook runs before anything else
   setup() {
-    // this keyword is not allowed in the setup hook and composition api
+    const ninjaOne = ref({ name: "mario", age: 30 });
 
-    // introduce ref as the references of the DOM element it hooked with
-    const para = ref(null);
+    const ninjaTwo = reactive({ name: "luigi", age: 35 });
 
-    // the values are not reactive elements, therefore, ref will solve this porblem and make the element have dynamic values
-    let name = ref("mario");
-    let age = ref(30);
-
-    const handleClick = () => {
-      name.value = "luigi";
-      age.value = 35;
-
-      // console.log(para, para.value);
-      // para.value.classList.add("test");
-      // para.value.textContent = "hello";
+    const updateNinjaOne = () => {
+      ninjaOne.value.age = 40;
     };
 
-    // if the things wanna to be used in the template, have to resigtered via return value
-    return { name, age, handleClick, para };
+    const updateNinjaTwo = () => {
+      ninjaTwo.age = 45;
+    };
+
+    return { ninjaOne, ninjaTwo, updateNinjaOne, updateNinjaTwo };
   },
 };
 </script>
