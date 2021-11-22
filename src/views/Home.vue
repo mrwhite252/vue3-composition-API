@@ -22,6 +22,12 @@ export default {
 
     const ninjaTwo = reactive({ name: "luigi", age: 35 });
 
+    // however, reactive is not working on primative values, such as string and numbers, like this:
+
+    const nameTwo = reactive("mario");
+
+    // it won't dynamically updated the value, so it is better to use ref other than reactive, in most cases
+
     const updateNinjaOne = () => {
       ninjaOne.value.age = 40;
     };
