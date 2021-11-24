@@ -5,7 +5,9 @@
     <div v-if="posts.length">
       <PostList :posts="posts" />
     </div>
-    <div v-else>The content is loading...</div>
+    <div v-else>
+      <Spinner />
+    </div>
   </div>
 </template>
 
@@ -14,9 +16,11 @@ import PostList from "../components/PostList.vue";
 
 import getPosts from "../composables/getPosts";
 
+import Spinner from "../components/Spinner.vue";
+
 export default {
   name: "Home",
-  components: { PostList },
+  components: { PostList, Spinner },
 
   // the setup hook runs before anything else
   setup() {
