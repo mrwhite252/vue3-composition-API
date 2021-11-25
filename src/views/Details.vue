@@ -25,7 +25,7 @@ export default {
 
     console.log(route);
 
-    const { post, error, load } = getPost(props.id);
+    const { post, error, load } = getPost(props.id); //can also use getPost(route.params.id)
 
     load();
 
